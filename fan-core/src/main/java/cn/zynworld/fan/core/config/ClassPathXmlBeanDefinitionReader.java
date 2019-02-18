@@ -4,6 +4,7 @@ import cn.zynworld.fan.common.utils.ListUtils;
 import cn.zynworld.fan.common.utils.ObjectUtils;
 import cn.zynworld.fan.common.utils.StringUtils;
 import cn.zynworld.fan.core.bean.BeanDefinition;
+import cn.zynworld.fan.core.bean.BeanDefinitionParser;
 import cn.zynworld.fan.core.bean.BeanDependent;
 import cn.zynworld.fan.core.enums.BeanDependentInjectTypeEnum;
 import cn.zynworld.fan.core.exceptions.FanParseXmlFailException;
@@ -52,7 +53,7 @@ public class ClassPathXmlBeanDefinitionReader implements BeanDefinitionReader{
                 beanDefinitions.addAll(definitions);
             }
             // TODO 验证分析所有beanDefinition
-
+            beanDefinitions.forEach(BeanDefinitionParser::parse);
             return beanDefinitions;
         } catch (Exception e) {
             return null;
@@ -99,6 +100,8 @@ public class ClassPathXmlBeanDefinitionReader implements BeanDefinitionReader{
                 if (ObjectUtils.isNotNull(beanDefinition)) beanDefinitionList.add(beanDefinition);
             }
         }
+
+        return beanDefinitionList;
     }
 
     private BeanDefinition handleBeanElement(Element beanElement) throws ClassNotFoundException {
