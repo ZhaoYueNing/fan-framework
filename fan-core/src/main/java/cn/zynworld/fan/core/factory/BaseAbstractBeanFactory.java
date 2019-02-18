@@ -1,5 +1,6 @@
 package cn.zynworld.fan.core.factory;
 
+import cn.zynworld.fan.common.utils.ListUtils;
 import cn.zynworld.fan.common.utils.ObjectUtils;
 import cn.zynworld.fan.core.bean.BaseBeanConstructor;
 import cn.zynworld.fan.core.bean.BeanConstructor;
@@ -41,7 +42,7 @@ public class BaseAbstractBeanFactory implements BeanFactory {
     /**
      * key beanClass value BeanDefinition
      */
-    private Map<String,BeanDefinition> classBeanDefinitionMap;
+    private Map<String, List<BeanDefinition>> classBeanDefinitionMap;
 
     /**
      * 存储键为beanName的单例实例
@@ -88,10 +89,15 @@ public class BaseAbstractBeanFactory implements BeanFactory {
         }
 
         // 获取bean定义
-        BeanDefinition beanDefinition = classBeanDefinitionMap.get(beanClass.getName());
+        List<BeanDefinition> beanDefinitionList = classBeanDefinitionMap.get(beanClass.getName());
+        if (ListUtils.isEmpty(beanDefinitionList)) {
+            return null;
+        }
+        BeanDefinition definition = beanDefinitionList.get(0);
+
         // 判断是否需要实例化
-        if (needCreateInstance(beanDefinition)) {
-            return (T) instantiationBean(beanDefinition);
+        if (needCreateInstance(definition)) {
+            return (T) instantiationBean(definition);
         }
 
         return null;
@@ -153,7 +159,15 @@ public class BaseAbstractBeanFactory implements BeanFactory {
         List<Class> beanClassList = definition.getBeanClassList();
 
         nameBeanDefinitionMap.put(beanName, definition);
-        beanClassList.forEach(beanClass -> classBeanDefinitionMap.put(beanClass.getName(), definition));
+        beanClassList.forEach(beanClass -> addDefinitionToClassBeanDefinitionMap(definition, beanClass));
+    }
+
+    private void addDefinitionToClassBeanDefinitionMap(BeanDefinition definition,Class beanClass) {
+        if (!classBeanDefinitionMap.containsKey(beanClass.getName())) {
+            classBeanDefinitionMap.put(beanClass.getName(), new ArrayList<>());
+        }
+
+        classBeanDefinitionMap.get(beanClass.getName()).add(definition);
     }
 
     /**

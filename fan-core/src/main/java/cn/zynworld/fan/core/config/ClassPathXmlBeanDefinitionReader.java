@@ -2,6 +2,7 @@ package cn.zynworld.fan.core.config;
 
 import cn.zynworld.fan.common.utils.ListUtils;
 import cn.zynworld.fan.common.utils.ObjectUtils;
+import cn.zynworld.fan.common.utils.ReflectionUtils;
 import cn.zynworld.fan.common.utils.StringUtils;
 import cn.zynworld.fan.core.bean.BeanDefinition;
 import cn.zynworld.fan.core.bean.BeanDefinitionParser;
@@ -159,7 +160,7 @@ public class ClassPathXmlBeanDefinitionReader implements BeanDefinitionReader{
 
         BeanDependent dependent = new BeanDependent();
         // 设置方法名
-        dependent.setMethodName(propertyToMethodName(propertyName));
+        dependent.setMethodName(ReflectionUtils.propertyToMethodName(propertyName));
 
         // beanName 注入的方式
         if (StringUtils.isNotEmpty(beanName)) {
@@ -188,15 +189,5 @@ public class ClassPathXmlBeanDefinitionReader implements BeanDefinitionReader{
         return documents;
     }
 
-    /**
-     * 将属性名转为set方法 如name -> setName
-     */
-    private String propertyToMethodName(String propertyName) {
-        if (StringUtils.isEmpty(propertyName)) {
-            return null;
-        }
 
-        final String SET_METHOD = "set";
-        return SET_METHOD + propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1);
-    }
 }
