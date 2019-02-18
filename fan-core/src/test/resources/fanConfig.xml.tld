@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<fan>
+
+    <beans>
+        <bean beanName="dept" beanClass="cn.zynworld.fan.core.entity.Dept">
+            <property propertyName="manager" beanName="manager"/>
+            <property propertyName="deptName" beanName="dept-RD"/>
+        </bean>
+        <bean beanName="manager" beanClass="cn.zynworld.fan.core.entity.Employee">
+            <property propertyName="employeeName" value="zhao"/>
+        </bean>
+    </beans>
+</fan>
