@@ -2,6 +2,7 @@ package cn.zynworld.fan.core;
 
 import cn.zynworld.fan.core.bean.BeanDefinition;
 import cn.zynworld.fan.core.bean.BeanDependent;
+import cn.zynworld.fan.core.config.ClassPathXmlBeanDefinitionReader;
 import cn.zynworld.fan.core.config.MockBeanDefinitionReader;
 import cn.zynworld.fan.core.entity.Dept;
 import cn.zynworld.fan.core.entity.Employee;
@@ -10,7 +11,6 @@ import cn.zynworld.fan.core.enums.BeanStatusEnum;
 import cn.zynworld.fan.core.factory.BaseAbstractBeanFactory;
 import org.junit.Test;
 
-import javax.lang.model.type.IntersectionType;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -68,6 +68,15 @@ public class BaseTester {
         definitions.add(managerDefinition);
 
         BaseAbstractBeanFactory beanFactory = new BaseAbstractBeanFactory(Collections.singletonList(new MockBeanDefinitionReader(definitions)));
+
+        Dept itDept = beanFactory.getBeanByClass(Dept.class);
+        System.out.println(itDept.getManager().getEmployeeName());
+    }
+
+    @Test
+    public void test1() {
+        ClassPathXmlBeanDefinitionReader reader = new ClassPathXmlBeanDefinitionReader(Collections.singletonList("fanConfig.xml"));
+        BaseAbstractBeanFactory beanFactory = new BaseAbstractBeanFactory(Collections.singletonList(reader));
 
         Dept itDept = beanFactory.getBeanByClass(Dept.class);
         System.out.println(itDept.getManager().getEmployeeName());

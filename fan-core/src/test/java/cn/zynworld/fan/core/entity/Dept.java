@@ -1,11 +1,14 @@
 package cn.zynworld.fan.core.entity;
 
+import javax.annotation.Resource;
+
 /**
  * Created by zhaoyuening on 2019/2/17.
  */
 public class Dept {
-    String deptName;
-    Employee manager;
+    private String deptName;
+    @Resource(name = "manager")
+    private Employee manager;
 
     public String getDeptName() {
         return deptName;

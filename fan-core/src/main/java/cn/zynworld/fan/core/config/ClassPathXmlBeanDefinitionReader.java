@@ -8,6 +8,7 @@ import cn.zynworld.fan.core.bean.BeanDefinition;
 import cn.zynworld.fan.core.bean.BeanDefinitionParser;
 import cn.zynworld.fan.core.bean.BeanDependent;
 import cn.zynworld.fan.core.enums.BeanDependentInjectTypeEnum;
+import cn.zynworld.fan.core.enums.BeanStatusEnum;
 import cn.zynworld.fan.core.exceptions.FanParseXmlFailException;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
@@ -32,10 +33,16 @@ public class ClassPathXmlBeanDefinitionReader implements BeanDefinitionReader{
 
     private final ClassLoader CLASS_LOADER = this.getClass().getClassLoader();
 
+    /**
+     * @param configLocals 配置文件地址
+     */
+    public ClassPathXmlBeanDefinitionReader(List<String> configLocals) {
+        this.configLocals = configLocals;
+    }
+
     @Override
     public List<BeanDefinition> read() {
-
-        return null;
+        return readBeanDefinitionByClassPathXmls();
     }
 
     private List<BeanDefinition> readBeanDefinitionByClassPathXmls(){
@@ -57,6 +64,7 @@ public class ClassPathXmlBeanDefinitionReader implements BeanDefinitionReader{
             beanDefinitions.forEach(BeanDefinitionParser::parse);
             return beanDefinitions;
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -97,7 +105,7 @@ public class ClassPathXmlBeanDefinitionReader implements BeanDefinitionReader{
         for (Iterator<Element> elementIterator = element.elementIterator(); elementIterator.hasNext();) {
             Element beanElement = elementIterator.next();
             if (BEAN_ELEMENT_NAME.equals(beanElement.getName())) {
-                BeanDefinition beanDefinition = handleBeanElement(element);
+                BeanDefinition beanDefinition = handleBeanElement(beanElement);
                 if (ObjectUtils.isNotNull(beanDefinition)) beanDefinitionList.add(beanDefinition);
             }
         }
@@ -114,7 +122,7 @@ public class ClassPathXmlBeanDefinitionReader implements BeanDefinitionReader{
 
         BeanDefinition definition = new BeanDefinition();
 
-        String beanClass = beanElement.attribute(BEAN_ATTRIBUTE_BEAN_CLASS).getStringValue();
+        String beanClass = beanElement.attributeValue(BEAN_ATTRIBUTE_BEAN_CLASS);
         String beanName = beanElement.attributeValue(BEAN_ATTRIBUTE_BEAN_NAME,beanClass);
         String singletion = beanElement.attributeValue(BEAN_ATTRIBUTE_SINGLETON,Boolean.TRUE.toString());
         String lazyload = beanElement.attributeValue(BEAN_ATTRIBUTE_LAZYLOAD, Boolean.FALSE.toString());
@@ -140,6 +148,7 @@ public class ClassPathXmlBeanDefinitionReader implements BeanDefinitionReader{
         definition.setLazyLoad(Boolean.parseBoolean(lazyload));
         definition.setSingleton(Boolean.parseBoolean(singletion));
         definition.setBeanDependents(dependents);
+        definition.setBeanStatus(BeanStatusEnum.BEAN_STATUS_INIT.getCode());
 
         return definition;
     }

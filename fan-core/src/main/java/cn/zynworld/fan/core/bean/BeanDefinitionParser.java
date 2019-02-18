@@ -26,13 +26,13 @@ public class BeanDefinitionParser {
         definition.setBeanClassList(allSuperClass);
 
         // 获取所有标注了Resource注解的字段 转为依赖
-        Field[] fields = beanClass.getFields();
+        Field[] fields = beanClass.getDeclaredFields();
         List<BeanDependent> dependents = Arrays.stream(fields)
                 .filter(field -> ObjectUtils.isNotNull(field.getAnnotation(Resource.class)))
                 .map(BeanDefinitionParser::handleResourceAnnotation)
                 .collect(Collectors.toList());
+        dependents.addAll(definition.getBeanDependents());
         definition.setBeanDependents(dependents);
-
         // TODO zyn 得到该类的所有注解
 
     }
