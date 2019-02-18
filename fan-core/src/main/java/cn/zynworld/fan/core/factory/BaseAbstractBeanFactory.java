@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * Created by zhaoyuening on 2019/2/17.
  */
-public class BaseAbstractBeanFactory implements BeanFactory {
+public abstract class BaseAbstractBeanFactory implements BeanFactory {
 
     /**
      * bean 构造器 通过此构建实例

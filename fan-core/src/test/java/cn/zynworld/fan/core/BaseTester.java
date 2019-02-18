@@ -9,6 +9,7 @@ import cn.zynworld.fan.core.entity.Employee;
 import cn.zynworld.fan.core.enums.BeanDependentInjectTypeEnum;
 import cn.zynworld.fan.core.enums.BeanStatusEnum;
 import cn.zynworld.fan.core.factory.BaseAbstractBeanFactory;
+import cn.zynworld.fan.core.factory.ClassPathXmlBeanFactory;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -67,7 +68,7 @@ public class BaseTester {
         beanDependents.add(managerNameDependent);
         definitions.add(managerDefinition);
 
-        BaseAbstractBeanFactory beanFactory = new BaseAbstractBeanFactory(Collections.singletonList(new MockBeanDefinitionReader(definitions)));
+        BaseAbstractBeanFactory beanFactory = new BaseAbstractBeanFactory(Collections.singletonList(new MockBeanDefinitionReader(definitions))){};
 
         Dept itDept = beanFactory.getBeanByClass(Dept.class);
         System.out.println(itDept.getManager().getEmployeeName());
@@ -75,8 +76,7 @@ public class BaseTester {
 
     @Test
     public void test1() {
-        ClassPathXmlBeanDefinitionReader reader = new ClassPathXmlBeanDefinitionReader(Collections.singletonList("fanConfig.xml"));
-        BaseAbstractBeanFactory beanFactory = new BaseAbstractBeanFactory(Collections.singletonList(reader));
+        ClassPathXmlBeanFactory beanFactory = new ClassPathXmlBeanFactory(Collections.singletonList("fanConfig.xml"));
 
         Dept itDept = beanFactory.getBeanByClass(Dept.class);
         System.out.println(itDept.getManager().getEmployeeName());
