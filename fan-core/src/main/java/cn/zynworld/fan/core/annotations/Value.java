@@ -15,5 +15,5 @@ public @interface Value {
     /**
      * 属性名
      */
-    String name() default "";
+    String value();
 }

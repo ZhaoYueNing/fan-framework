@@ -156,6 +156,10 @@ public class BaseBeanConstructor implements BeanConstructor{
         if (BeanDependentInjectLevelEnum.INJECT_LEVEL_FIELD.getCode().equals(levelCode)) {
             Field field = beanInstance.getClass().getDeclaredField(name);
             field.setAccessible(Boolean.TRUE);
+            // 如果是字符串参数 有可能要转型到字段的类型
+            if (param.getClass().equals(String.class)) {
+                param = ReflectionUtils.stringToBaseType((String) param, field.getType());
+            }
             field.set(beanInstance, param);
             return;
         }

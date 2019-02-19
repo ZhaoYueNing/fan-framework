@@ -17,7 +17,7 @@
             <property propertyName="employeeName" value="zhao"/>
             <!--<property propertyName="age" propertyRef="managerAge"/>-->
             <!-- 当level为method时 (默认不写为 field) 则为方法注入 -->
-            <property propertyName="setAge" propertyRef="managerAge" level="method"/>
+            <!--<property propertyName="setAge" propertyRef="managerAge" level="method"/>-->
         </bean>
     </beans>
 </fan>

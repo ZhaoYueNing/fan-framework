@@ -3,11 +3,11 @@ package cn.zynworld.fan.core.bean;
 import cn.zynworld.fan.common.utils.ObjectUtils;
 import cn.zynworld.fan.common.utils.ReflectionUtils;
 import cn.zynworld.fan.common.utils.StringUtils;
+import cn.zynworld.fan.core.annotations.Value;
 import cn.zynworld.fan.core.enums.BeanDependentInjectLevelEnum;
 import cn.zynworld.fan.core.enums.BeanDependentInjectTypeEnum;
 
 import javax.annotation.Resource;
-import javax.annotation.Resources;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -50,23 +50,43 @@ public class BeanDefinitionParser {
             definition.setBeanDependents(new ArrayList<>());
         }
 
-        // 获取所有标注了Resource注解的字段 转为依赖
+        // 该bean的所有字段及方法
         Field[] fields = definition.getBeanClass().getDeclaredFields();
-        List<BeanDependent> fieldDependents = Arrays.stream(fields)
+        Method[] methods = definition.getBeanClass().getDeclaredMethods();
+
+        // 获取所有标注了Resource注解的字段 转为依赖
+        List<BeanDependent> fieldResourceDependents = Arrays.stream(fields)
                 .filter(field -> ObjectUtils.isNotNull(field.getAnnotation(Resource.class)))
                 .map(BeanDefinitionParser::handleResourceAnnotation)
                 .collect(Collectors.toList());
-        definition.getBeanDependents().addAll(fieldDependents);
+        definition.getBeanDependents().addAll(fieldResourceDependents);
 
         // 获取所有标注了Resource的方法
-        Method[] methods = definition.getBeanClass().getDeclaredMethods();
-        List<BeanDependent> methodDependents = Arrays.stream(methods).filter(method -> ObjectUtils.isNotNull(method.getAnnotation(Resources.class)))
+        List<BeanDependent> methodResourceDependents = Arrays.stream(methods)
+                .filter(method -> ObjectUtils.isNotNull(method.getAnnotation(Resource.class)))
                 .map(BeanDefinitionParser::handleResourceAnnotation)
                 .collect(Collectors.toList());
-        definition.getBeanDependents().addAll(methodDependents);
+        definition.getBeanDependents().addAll(methodResourceDependents);
+
+        // 获取所有标注了Value的字段
+        List<BeanDependent> fieldValueDependents = Arrays.stream(fields)
+                .filter(field -> ObjectUtils.isNotNull(field.getAnnotation(Value.class)) && StringUtils.isNotEmpty(field.getAnnotation(Value.class).value()))
+                .map(BeanDefinitionParser::handleValueAnnotation)
+                .collect(Collectors.toList());
+        definition.getBeanDependents().addAll(fieldValueDependents);
+
+        // 获取所有标注了Value的方法
+        List<BeanDependent> methodValueDependents = Arrays.stream(methods)
+                .filter(method -> ObjectUtils.isNotNull(method.getAnnotation(Value.class)) && StringUtils.isNotEmpty(method.getAnnotation(Value.class).value()))
+                .map(BeanDefinitionParser::handleResourceAnnotation)
+                .collect(Collectors.toList());
+        definition.getBeanDependents().addAll(methodValueDependents);
     }
 
 
+    /**
+     * 将标注了Resource注解的方法转为依赖
+     */
     private static BeanDependent handleResourceAnnotation(Method method) {
         Resource resource = method.getAnnotation(Resource.class);
 
@@ -86,6 +106,7 @@ public class BeanDefinitionParser {
 
         return dependent;
     }
+
     /**
      * 将标注了Resource注解的字段转为依赖
      */
@@ -106,6 +127,38 @@ public class BeanDefinitionParser {
             dependent.setInjectInfo(field.getType().getName());
         }
 
+        return dependent;
+    }
+
+    /**
+     * 将标注了Value注解的字段转为依赖
+     */
+    private static BeanDependent handleValueAnnotation(Field field) {
+        Value value = field.getAnnotation(Value.class);
+
+        BeanDependent dependent = new BeanDependent();
+
+        // 字段级别
+        dependent.setInjectLevel(BeanDependentInjectLevelEnum.INJECT_LEVEL_FIELD.getCode());
+        dependent.setName(field.getName());
+        dependent.setInjectType(BeanDependentInjectTypeEnum.INJECT_TYPE_PROPERTY.getCode());
+        dependent.setInjectInfo(value.value());
+        return dependent;
+    }
+
+    /**
+     * 将标注了Value注解的字段转为依赖
+     */
+    private static BeanDependent handleValueAnnotation(Method method) {
+        Value value = method.getAnnotation(Value.class);
+
+        BeanDependent dependent = new BeanDependent();
+
+        // 方法级别
+        dependent.setInjectLevel(BeanDependentInjectLevelEnum.INJECT_LEVEL_METHOD.getCode());
+        dependent.setName(method.getName());
+        dependent.setInjectType(BeanDependentInjectTypeEnum.INJECT_TYPE_PROPERTY.getCode());
+        dependent.setInjectInfo(value.value());
         return dependent;
     }
 }
