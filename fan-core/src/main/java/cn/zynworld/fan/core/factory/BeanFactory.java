@@ -15,6 +15,12 @@ public interface BeanFactory {
     <T> T getBeanByClass(Class<T> beanClass);
 
     /**
+     * 获取系统属性
+     * @param name 系统属性名
+     */
+    String getProperty(String name);
+
+    /**
      * 刷新BeanFactory
      */
     void refresh();

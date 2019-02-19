@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <fan>
+    <properties>
+        <property name="employeeName" value="zhao" />
+    </properties>
 
     <beans>
         <bean beanName="dept" beanClass="cn.zynworld.fan.core.entity.Dept">
+            <!-- 直接注入值 -->
             <property propertyName="deptName" value="dept-RD"/>
+            <!-- 按beanName 注入 -->
+            <!--<property propertyName="manager" beanRef="manager"/>-->
         </bean>
         <bean beanName="manager" beanClass="cn.zynworld.fan.core.entity.Employee">
-            <property propertyName="employeeName" value="zhao"/>
+            <!--按property 注入-->
+            <property propertyName="employeeName" propertyRef="employeeName"/>
         </bean>
     </beans>
 </fan>

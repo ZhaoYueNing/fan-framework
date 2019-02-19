@@ -11,15 +11,18 @@ public class BeanDependent {
      * 例如setName
      */
     private String methodName;
+
     /**
      * 注入类型 {@link BeanDependentInjectTypeEnum#getCode()}
      * 有三种注入方式 类型注入、名称注入、值注入
      */
     private Integer injectType;
+
     /**
      * 注入信息：
      * 类型注入：存放类名称
-     * 名称注入：beanName
+     * 名称注入：beanName字符串
+     * 属性注入:Property对象
      * 值注入：基本类型字符串类型的字符值
      */
     private String injectInfo;

@@ -39,12 +39,34 @@ public class ReflectionUtils {
     /**
      * 将属性名转为set方法 如name -> setName
      */
-    public static String propertyToMethodName(String propertyName) {
-        if (StringUtils.isEmpty(propertyName)) {
+    public static String fieldNameToMethodName(String fieldName) {
+        if (StringUtils.isEmpty(fieldName)) {
             return null;
         }
-
         final String SET_METHOD = "set";
-        return SET_METHOD + propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1);
+        return SET_METHOD + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
+    }
+
+    /**
+     * 将属性名转为set方法 如name -> setName
+     */
+    public static String methodNameToFieldName(String methodName) {
+        if (StringUtils.isEmpty(methodName) && methodName.length() > 3) {
+            return null;
+        }
+        return  methodName.substring(3,4).toLowerCase() + methodName.substring(4);
+    }
+
+    public static <T> T stringToBaseType(String value, Class<T> zlass) {
+        if (zlass == String.class) {
+            return (T) value;
+        } else if (zlass == int.class || zlass == Integer.class) {
+            return (T) new Integer(value);
+        } else if (zlass == float.class || zlass == Float.class) {
+            return (T) new Float(value);
+        } else if (zlass == double.class || zlass == Double.class) {
+            return (T) new Double(value);
+        }
+        return null;
     }
 }

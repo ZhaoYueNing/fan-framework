@@ -17,7 +17,11 @@ public enum BeanDependentInjectTypeEnum {
     /**
      * 直接传递基本类型及字符串值
      */
-    INJECT_TYPE_VALUE(2, "按值注入");
+    INJECT_TYPE_VALUE(2, "按值注入"),
+    /**
+     * 按系统属性注入
+     */
+    INJECT_TYPE_PROPERTY(3, "按属性注入");
 
     private Integer code;
     private String desc;

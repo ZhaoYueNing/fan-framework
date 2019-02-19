@@ -10,39 +10,67 @@ import cn.zynworld.fan.core.bean.BeanDependent;
 import cn.zynworld.fan.core.enums.BeanDependentInjectTypeEnum;
 import cn.zynworld.fan.core.enums.BeanStatusEnum;
 import cn.zynworld.fan.core.exceptions.FanParseXmlFailException;
-import org.dom4j.Attribute;
 import org.dom4j.Document;
-import org.dom4j.DocumentException;
 import org.dom4j.Element;
+import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by zhaoyuening on 2019/2/18.
  * 类路径内xml配置文件中读取bean配置
  */
-public class ClassPathXmlBeanDefinitionReader implements BeanDefinitionReader{
+public class ClassPathXmlConfigReader implements ConfigReader {
 
     /**
      * 配置文件地址列表
      */
     private List<String> configLocals;
+    /**
+     * xml Document
+     */
+    private List<Document> documents;
 
     private final ClassLoader CLASS_LOADER = this.getClass().getClassLoader();
 
     /**
      * @param configLocals 配置文件地址
      */
-    public ClassPathXmlBeanDefinitionReader(List<String> configLocals) {
+    public ClassPathXmlConfigReader(List<String> configLocals) {
         this.configLocals = configLocals;
+        // 获取所有文档
+        this.documents = getDocuments(configLocals);
     }
 
     @Override
-    public List<BeanDefinition> read() {
+    public List<BeanDefinition> readBeanDefinition() {
         return readBeanDefinitionByClassPathXmls();
+    }
+
+    /**
+     * 读取所有属性
+     */
+    @Override
+    public Map<String, String> readProperty() {
+        final String XPATH_PROPERTY = "/fan/properties/property[@name][@value]";
+        final String PROPERTY_NAME = "@name";
+        final String PROPERTY_VALUE = "@value";
+
+        // 所有的属性及值
+        Map<String, String> propertyMap = new HashMap<>();
+
+        // 遍历获取所有属性
+        for (Document document : documents) {
+            List<Node> propertys = document.selectNodes(XPATH_PROPERTY);
+            for (Node property : propertys) {
+                String name = property.valueOf(PROPERTY_NAME);
+                String value = property.valueOf(PROPERTY_VALUE);
+                propertyMap.put(name, value);
+            }
+        }
+
+        return propertyMap;
     }
 
     private List<BeanDefinition> readBeanDefinitionByClassPathXmls(){
@@ -52,15 +80,15 @@ public class ClassPathXmlBeanDefinitionReader implements BeanDefinitionReader{
                 return definitionList;
             }
 
-            // 获取所有文档
-            List<Document> documents = getDocuments(configLocals);
+
             // 处理所有文档 生成基本beanDefinition
             List<BeanDefinition> beanDefinitions = new ArrayList<>();
             for (Document document : documents) {
                 List<BeanDefinition> definitions = handleDocument(document);
                 beanDefinitions.addAll(definitions);
             }
-            // TODO 验证分析所有beanDefinition
+
+            // 对所有beanDefinition 进行解析
             beanDefinitions.forEach(BeanDefinitionParser::parse);
             return beanDefinitions;
         } catch (Exception e) {
@@ -155,47 +183,61 @@ public class ClassPathXmlBeanDefinitionReader implements BeanDefinitionReader{
 
     private BeanDependent handleBeanPropertyElement(Element propertyElement) {
         final String PROPERTY_ATTRIBUTE_PROPERTY_NAME = "propertyName";
-        final String PROPERTY_ATTRIBUTE_BEAN_NAME = "beanName";
+        // bean 注入
+        final String PROPERTY_ATTRIBUTE_BEAN_REF = "beanRef";
+        // 属性注入
+        final String PROPERTY_ATTRIBUTE_PROPERTY_REF = "propertyRef";
+        // 按值直接注入
         final String PROPERTY_ATTRIBUTE_VALUE = "value";
 
         String propertyName = propertyElement.attributeValue(PROPERTY_ATTRIBUTE_PROPERTY_NAME);
-        String beanName = propertyElement.attributeValue(PROPERTY_ATTRIBUTE_BEAN_NAME);
+        String beanRef = propertyElement.attributeValue(PROPERTY_ATTRIBUTE_BEAN_REF);
+        String propertyRef = propertyElement.attributeValue(PROPERTY_ATTRIBUTE_PROPERTY_REF);
         String value = propertyElement.attributeValue(PROPERTY_ATTRIBUTE_VALUE);
 
-        // 配置不合理 value beanName 两种必有其一
-        if (StringUtils.isEmpty(beanName) && ObjectUtils.isNull(value)) {
-            return null;
-        }
 
         BeanDependent dependent = new BeanDependent();
         // 设置方法名
-        dependent.setMethodName(ReflectionUtils.propertyToMethodName(propertyName));
+        dependent.setMethodName(ReflectionUtils.fieldNameToMethodName(propertyName));
 
-        // beanName 注入的方式
-        if (StringUtils.isNotEmpty(beanName)) {
+        if (StringUtils.isNotEmpty(beanRef)) {
+            // beanRef 注入的方式
             dependent.setInjectType(BeanDependentInjectTypeEnum.INJECT_TYPE_NAME.getCode());
-            dependent.setInjectInfo(beanName);
+            dependent.setInjectInfo(beanRef);
+            return dependent;
+        } else if (StringUtils.isNotEmpty(propertyRef)) {
+            // property 注入
+            dependent.setInjectType(BeanDependentInjectTypeEnum.INJECT_TYPE_PROPERTY.getCode());
+            dependent.setInjectInfo(beanRef);
+            return dependent;
+        } else if (ObjectUtils.isNotNull(value)) {
+            // value 注入
+            dependent.setInjectType(BeanDependentInjectTypeEnum.INJECT_TYPE_VALUE.getCode());
+            dependent.setInjectInfo(value);
             return dependent;
         }
 
-        // 直接值注入
-        dependent.setInjectInfo(value);
-        dependent.setInjectType(BeanDependentInjectTypeEnum.INJECT_TYPE_VALUE.getCode());
-        return dependent;
+        // 都不符合
+        return null;
     }
 
 
     /**
      * 获取xml的document对象
      */
-    private List<Document> getDocuments(List<String> configLocals) throws DocumentException {
-        List<Document> documents = new ArrayList<>();
-        SAXReader reader = new SAXReader();
-        for (String configLocal : configLocals) {
-            Document document = reader.read(CLASS_LOADER.getResource(configLocal));
-            if (ObjectUtils.isNotNull(document)) documents.add(document);
+    private List<Document> getDocuments(List<String> configLocals) {
+        try {
+            List<Document> documents = new ArrayList<>();
+            SAXReader reader = new SAXReader();
+            for (String configLocal : configLocals) {
+                Document document = reader.read(CLASS_LOADER.getResource(configLocal));
+                if (ObjectUtils.isNotNull(document)) documents.add(document);
+            }
+            return documents;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
-        return documents;
     }
 
 

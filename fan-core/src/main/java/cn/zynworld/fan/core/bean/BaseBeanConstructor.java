@@ -2,9 +2,11 @@ package cn.zynworld.fan.core.bean;
 
 import cn.zynworld.fan.common.utils.ListUtils;
 import cn.zynworld.fan.common.utils.ObjectUtils;
+import cn.zynworld.fan.common.utils.ReflectionUtils;
 import cn.zynworld.fan.core.enums.BeanDependentInjectTypeEnum;
 import cn.zynworld.fan.core.factory.BeanFactory;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 /**
@@ -48,6 +50,40 @@ public class BaseBeanConstructor implements BeanConstructor{
             handleBeanDependentByClass(beanInstance, dependent);
             handleBeanDependentByName(beanInstance, dependent);
             handleBeanDependentByValue(beanInstance, dependent);
+            handleBeanDependentByProperty(beanInstance, dependent);
+        }
+    }
+
+    /**
+     * 通过属性解决单个依赖
+     * @param beanInstance bean实例
+     * @param dependent bean依赖信息
+     */
+    private void handleBeanDependentByProperty(Object beanInstance, BeanDependent dependent) {
+        try {
+            if (!dependent.getInjectType().equals(BeanDependentInjectTypeEnum.INJECT_TYPE_PROPERTY.getCode())) {
+                return;
+            }
+            // 获取属性值
+            String propertyValue = beanFactory.getProperty(dependent.getInjectInfo());
+            if (ObjectUtils.isNull(propertyValue)) {
+                return;
+            }
+
+            // 获取到参数类型
+            String fileName = ReflectionUtils.methodNameToFieldName(dependent.getMethodName());
+            Class<?> zlass = beanInstance.getClass().getDeclaredField(fileName).getType();
+
+            // 将字符转为基本类
+            Object param = ReflectionUtils.stringToBaseType(dependent.getInjectInfo(), zlass);
+            if (ObjectUtils.isNull(param)) {
+                return;
+            }
+
+            // 反射调用方法
+            beanInstance.getClass().getMethod(dependent.getMethodName(), param.getClass()).invoke(beanInstance, param);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

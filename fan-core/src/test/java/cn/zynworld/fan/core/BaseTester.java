@@ -2,8 +2,8 @@ package cn.zynworld.fan.core;
 
 import cn.zynworld.fan.core.bean.BeanDefinition;
 import cn.zynworld.fan.core.bean.BeanDependent;
-import cn.zynworld.fan.core.config.ClassPathXmlBeanDefinitionReader;
-import cn.zynworld.fan.core.config.MockBeanDefinitionReader;
+import cn.zynworld.fan.core.config.ClassPathXmlConfigReader;
+import cn.zynworld.fan.core.config.MockConfigReader;
 import cn.zynworld.fan.core.entity.Dept;
 import cn.zynworld.fan.core.entity.Employee;
 import cn.zynworld.fan.core.enums.BeanDependentInjectTypeEnum;
@@ -68,7 +68,7 @@ public class BaseTester {
         beanDependents.add(managerNameDependent);
         definitions.add(managerDefinition);
 
-        BaseAbstractBeanFactory beanFactory = new BaseAbstractBeanFactory(Collections.singletonList(new MockBeanDefinitionReader(definitions))){};
+        BaseAbstractBeanFactory beanFactory = new BaseAbstractBeanFactory(Collections.singletonList(new MockConfigReader(definitions))){};
 
         Dept itDept = beanFactory.getBeanByClass(Dept.class);
         System.out.println(itDept.getManager().getEmployeeName());
@@ -80,5 +80,11 @@ public class BaseTester {
 
         Dept itDept = beanFactory.getBeanByClass(Dept.class);
         System.out.println(itDept.getManager().getEmployeeName());
+    }
+
+    @Test
+    public void test2() {
+        ClassPathXmlConfigReader configReader = new ClassPathXmlConfigReader(Collections.singletonList("fanConfig.xml"));
+        configReader.readProperty();
     }
 }

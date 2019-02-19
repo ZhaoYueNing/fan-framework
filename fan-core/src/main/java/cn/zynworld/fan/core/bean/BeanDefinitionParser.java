@@ -43,7 +43,7 @@ public class BeanDefinitionParser {
     private static BeanDependent handleResourceAnnotation(Field field) {
         Resource resource = field.getAnnotation(Resource.class);
         BeanDependent dependent = new BeanDependent();
-        dependent.setMethodName(ReflectionUtils.propertyToMethodName(field.getName()));
+        dependent.setMethodName(ReflectionUtils.fieldNameToMethodName(field.getName()));
         // 采用beanName的方式注入
         if (StringUtils.isNotEmpty(resource.name())) {
             dependent.setInjectType(BeanDependentInjectTypeEnum.INJECT_TYPE_NAME.getCode());
