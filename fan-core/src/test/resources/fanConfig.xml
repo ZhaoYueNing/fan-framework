@@ -2,19 +2,19 @@
 
 <fan>
     <properties>
-        <property name="managerAge" value="22" />
+        <property name="managerAge" propertyValue="22" />
     </properties>
 
     <beans>
         <bean beanName="dept" beanClass="cn.zynworld.fan.core.entity.Dept">
             <!-- 直接注入值 -->
-            <property propertyName="deptName" value="dept-RD"/>
+            <property propertyName="deptName" propertyValue="dept-RD"/>
             <!-- 按beanName 注入 -->
             <!--<property propertyName="manager" beanRef="manager"/>-->
         </bean>
         <bean beanName="manager" beanClass="cn.zynworld.fan.core.entity.Employee">
             <!--按property 注入-->
-            <property propertyName="employeeName" value="zhao"/>
+            <property propertyName="employeeName" propertyValue="zhao"/>
             <!--<property propertyName="age" propertyRef="managerAge"/>-->
             <!-- 当level为method时 (默认不写为 field) 则为方法注入 -->
             <!--<property propertyName="setAge" propertyRef="managerAge" level="method"/>-->

@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.FIELD,ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Value {
+public @interface PropertyValue {
     /**
      * 属性名
      */

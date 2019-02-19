@@ -1,8 +1,6 @@
 package cn.zynworld.fan.core.entity;
 
-import cn.zynworld.fan.core.annotations.Value;
-
-import javax.annotation.Resource;
+import cn.zynworld.fan.core.annotations.PropertyValue;
 
 /**
  * Created by zhaoyuening on 2019/2/17.
@@ -10,7 +8,7 @@ import javax.annotation.Resource;
 public class Employee {
     private String employeeName;
     // 注入属性参数
-    @Value("managerAge")
+    @PropertyValue("managerAge")
     private Integer age;
 
     public String getEmployeeName() {

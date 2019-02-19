@@ -150,6 +150,7 @@ public class BaseBeanConstructor implements BeanConstructor{
      * @param beanInstance bean实例
      * @param param 赋值参数
      * @param injectTypeCode {@link BeanDependentInjectTypeEnum#getCode()}
+     * TODO task 重写反射调用
      */
     private void reflectHandle(Integer levelCode, String name, Object beanInstance, Object param,Integer injectTypeCode) throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         // 字段赋值
