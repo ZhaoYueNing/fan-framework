@@ -2,7 +2,7 @@
 
 <fan>
     <properties>
-        <!--<property name="java.version" value="8" />-->
+        <property name="managerAge" value="22" />
     </properties>
 
     <beans>
@@ -10,10 +10,12 @@
             <!-- 直接注入值 -->
             <property propertyName="deptName" value="dept-RD"/>
             <!-- 按beanName 注入 -->
-            <!--<property propertyName="manager" beanName="manager"/>-->
+            <!--<property propertyName="manager" beanRef="manager"/>-->
         </bean>
         <bean beanName="manager" beanClass="cn.zynworld.fan.core.entity.Employee">
+            <!--按property 注入-->
             <property propertyName="employeeName" value="zhao"/>
+            <property propertyName="age" propertyRef="managerAge"/>
         </bean>
     </beans>
 </fan>

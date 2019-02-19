@@ -75,7 +75,7 @@ public class BaseBeanConstructor implements BeanConstructor{
             Class<?> zlass = beanInstance.getClass().getDeclaredField(fileName).getType();
 
             // 将字符转为基本类
-            Object param = ReflectionUtils.stringToBaseType(dependent.getInjectInfo(), zlass);
+            Object param = ReflectionUtils.stringToBaseType(propertyValue, zlass);
             if (ObjectUtils.isNull(param)) {
                 return;
             }

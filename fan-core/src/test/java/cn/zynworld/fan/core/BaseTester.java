@@ -80,6 +80,7 @@ public class BaseTester {
 
         Dept itDept = beanFactory.getBeanByClass(Dept.class);
         System.out.println(itDept.getManager().getEmployeeName());
+        System.out.println(itDept.getManager().getAge());
     }
 
     @Test

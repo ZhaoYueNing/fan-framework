@@ -208,7 +208,7 @@ public class ClassPathXmlConfigReader implements ConfigReader {
         } else if (StringUtils.isNotEmpty(propertyRef)) {
             // property 注入
             dependent.setInjectType(BeanDependentInjectTypeEnum.INJECT_TYPE_PROPERTY.getCode());
-            dependent.setInjectInfo(beanRef);
+            dependent.setInjectInfo(propertyRef);
             return dependent;
         } else if (ObjectUtils.isNotNull(value)) {
             // value 注入

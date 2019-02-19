@@ -2,7 +2,7 @@
 
 <fan>
     <properties>
-        <property name="employeeName" value="zhao" />
+        <property name="managerAge" value="22" />
     </properties>
 
     <beans>
@@ -14,7 +14,8 @@
         </bean>
         <bean beanName="manager" beanClass="cn.zynworld.fan.core.entity.Employee">
             <!--按property 注入-->
-            <property propertyName="employeeName" propertyRef="employeeName"/>
+            <property propertyName="employeeName" value="zhao"/>
+            <property propertyName="age" propertyRef="managerAge"/>
         </bean>
     </beans>
 </fan>
