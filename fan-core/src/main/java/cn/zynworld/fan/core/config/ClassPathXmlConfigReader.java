@@ -7,6 +7,7 @@ import cn.zynworld.fan.common.utils.StringUtils;
 import cn.zynworld.fan.core.bean.BeanDefinition;
 import cn.zynworld.fan.core.bean.BeanDefinitionParser;
 import cn.zynworld.fan.core.bean.BeanDependent;
+import cn.zynworld.fan.core.enums.BeanDependentInjectLevelEnum;
 import cn.zynworld.fan.core.enums.BeanDependentInjectTypeEnum;
 import cn.zynworld.fan.core.enums.BeanStatusEnum;
 import cn.zynworld.fan.core.exceptions.FanParseXmlFailException;
@@ -182,6 +183,7 @@ public class ClassPathXmlConfigReader implements ConfigReader {
     }
 
     private BeanDependent handleBeanPropertyElement(Element propertyElement) {
+        // 通过属性名注入
         final String PROPERTY_ATTRIBUTE_PROPERTY_NAME = "propertyName";
         // bean 注入
         final String PROPERTY_ATTRIBUTE_BEAN_REF = "beanRef";
@@ -189,17 +191,29 @@ public class ClassPathXmlConfigReader implements ConfigReader {
         final String PROPERTY_ATTRIBUTE_PROPERTY_REF = "propertyRef";
         // 按值直接注入
         final String PROPERTY_ATTRIBUTE_VALUE = "value";
+        // 决定 方法注入 字段注入
+        final String PROPERTY_ATTRIBUTE_LEVEL = "level";
+        // 级别值 - 方法
+        final String PROPERTY_ATTRIBUTE_LEVEL_METHOD_VALUE = "method";
 
         String propertyName = propertyElement.attributeValue(PROPERTY_ATTRIBUTE_PROPERTY_NAME);
+        String level = propertyElement.attributeValue(PROPERTY_ATTRIBUTE_LEVEL);
         String beanRef = propertyElement.attributeValue(PROPERTY_ATTRIBUTE_BEAN_REF);
         String propertyRef = propertyElement.attributeValue(PROPERTY_ATTRIBUTE_PROPERTY_REF);
         String value = propertyElement.attributeValue(PROPERTY_ATTRIBUTE_VALUE);
 
 
         BeanDependent dependent = new BeanDependent();
-        // 设置方法名
-        dependent.setMethodName(ReflectionUtils.fieldNameToMethodName(propertyName));
+        dependent.setName(propertyName);
 
+        // 设置注入级别 默认为字段级别
+        if (ObjectUtils.isNotNull(level) && level.equals(PROPERTY_ATTRIBUTE_LEVEL_METHOD_VALUE)) {
+            dependent.setInjectLevel(BeanDependentInjectLevelEnum.INJECT_LEVEL_METHOD.getCode());
+        } else {
+            dependent.setInjectLevel(BeanDependentInjectLevelEnum.INJECT_LEVEL_FIELD.getCode());
+        }
+
+        // 按注入方式配值
         if (StringUtils.isNotEmpty(beanRef)) {
             // beanRef 注入的方式
             dependent.setInjectType(BeanDependentInjectTypeEnum.INJECT_TYPE_NAME.getCode());

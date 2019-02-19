@@ -28,7 +28,7 @@ public class BaseTester {
         // 部门bean定义
         BeanDefinition deptDefinition = new BeanDefinition();
         deptDefinition.setBeanClass(Dept.class);
-        deptDefinition.setBeanClassList(Collections.singletonList(Dept.class));
+        deptDefinition.setBeanSupperClassSet(Collections.singleton(Dept.class));
         deptDefinition.setBeanName(Dept.class.getName());
         deptDefinition.setLazyLoad(false);
         deptDefinition.setSingleton(true);
@@ -38,13 +38,13 @@ public class BaseTester {
         BeanDependent managerDependent = new BeanDependent();
         managerDependent.setInjectType(BeanDependentInjectTypeEnum.INJECT_TYPE_CLASS.getCode());
         managerDependent.setInjectInfo(Employee.class.getName());
-        managerDependent.setMethodName("setManager");
+        managerDependent.setName("setManager");
         beanDependents.add(managerDependent);
         // 设置依赖
         BeanDependent deptNameDependent = new BeanDependent();
         deptNameDependent.setInjectType(BeanDependentInjectTypeEnum.INJECT_TYPE_NAME.getCode());
         deptNameDependent.setInjectInfo("IT 部门");
-        deptNameDependent.setMethodName("setDeptName");
+        deptNameDependent.setName("setDeptName");
         beanDependents.add(deptNameDependent);
         deptDefinition.setBeanDependents(beanDependents);
         definitions.add(deptDefinition);
@@ -52,7 +52,7 @@ public class BaseTester {
         // 经理
         BeanDefinition managerDefinition = new BeanDefinition();
         managerDefinition.setBeanClass(Employee.class);
-        managerDefinition.setBeanClassList(Collections.singletonList(Employee.class));
+        managerDefinition.setBeanSupperClassSet(Collections.singleton(Employee.class));
         managerDefinition.setBeanName(Employee.class.getName());
         managerDefinition.setLazyLoad(false);
         managerDefinition.setSingleton(true);
@@ -62,7 +62,7 @@ public class BaseTester {
         BeanDependent managerNameDependent = new BeanDependent();
         managerNameDependent.setInjectType(BeanDependentInjectTypeEnum.INJECT_TYPE_VALUE.getCode());
         managerNameDependent.setInjectInfo("zhao");
-        managerNameDependent.setMethodName("setEmployeeName");
+        managerNameDependent.setName("setEmployeeName");
         managerDefinition.setBeanDependents(beanDependents);
 
         beanDependents.add(managerNameDependent);

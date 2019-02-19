@@ -1,5 +1,6 @@
 package cn.zynworld.fan.core.bean;
 
+import cn.zynworld.fan.core.enums.BeanDependentInjectLevelEnum;
 import cn.zynworld.fan.core.enums.BeanDependentInjectTypeEnum;
 
 /**
@@ -7,10 +8,16 @@ import cn.zynworld.fan.core.enums.BeanDependentInjectTypeEnum;
  * beanDefinition中的的依赖
  */
 public class BeanDependent {
+
     /**
-     * 例如setName
+     * 方法注入或字段注入
+     * {@link BeanDependentInjectLevelEnum#getCode()}
      */
-    private String methodName;
+    private Integer injectLevel;
+    /**
+     * 存放方法名或字段名
+     */
+    private String name;
 
     /**
      * 注入类型 {@link BeanDependentInjectTypeEnum#getCode()}
@@ -27,12 +34,12 @@ public class BeanDependent {
      */
     private String injectInfo;
 
-    public String getMethodName() {
-        return methodName;
+    public String getName() {
+        return name;
     }
 
-    public BeanDependent setMethodName(String methodName) {
-        this.methodName = methodName;
+    public BeanDependent setName(String name) {
+        this.name = name;
         return this;
     }
 
@@ -51,6 +58,15 @@ public class BeanDependent {
 
     public BeanDependent setInjectInfo(String injectInfo) {
         this.injectInfo = injectInfo;
+        return this;
+    }
+
+    public Integer getInjectLevel() {
+        return injectLevel;
+    }
+
+    public BeanDependent setInjectLevel(Integer injectLevel) {
+        this.injectLevel = injectLevel;
         return this;
     }
 }

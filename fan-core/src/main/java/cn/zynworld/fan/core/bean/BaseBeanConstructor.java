@@ -1,13 +1,17 @@
 package cn.zynworld.fan.core.bean;
 
+import cn.zynworld.fan.common.utils.Constants;
 import cn.zynworld.fan.common.utils.ListUtils;
 import cn.zynworld.fan.common.utils.ObjectUtils;
 import cn.zynworld.fan.common.utils.ReflectionUtils;
+import cn.zynworld.fan.core.enums.BeanDependentInjectLevelEnum;
 import cn.zynworld.fan.core.enums.BeanDependentInjectTypeEnum;
 import cn.zynworld.fan.core.factory.BeanFactory;
 
 import java.lang.reflect.Field;
-import java.util.List;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.*;
 
 /**
  * Created by zhaoyuening on 2019/2/17.
@@ -66,22 +70,11 @@ public class BaseBeanConstructor implements BeanConstructor{
             }
             // 获取属性值
             String propertyValue = beanFactory.getProperty(dependent.getInjectInfo());
-            if (ObjectUtils.isNull(propertyValue)) {
-                return;
+
+
+            if (ObjectUtils.isNotNull(propertyValue)) {
+                reflectHandle(dependent.getInjectLevel(), dependent.getName(), beanInstance, propertyValue, dependent.getInjectType());
             }
-
-            // 获取到参数类型
-            String fileName = ReflectionUtils.methodNameToFieldName(dependent.getMethodName());
-            Class<?> zlass = beanInstance.getClass().getDeclaredField(fileName).getType();
-
-            // 将字符转为基本类
-            Object param = ReflectionUtils.stringToBaseType(propertyValue, zlass);
-            if (ObjectUtils.isNull(param)) {
-                return;
-            }
-
-            // 反射调用方法
-            beanInstance.getClass().getMethod(dependent.getMethodName(), param.getClass()).invoke(beanInstance, param);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -101,7 +94,7 @@ public class BaseBeanConstructor implements BeanConstructor{
             // 从beanFactory获取依赖bean
             Object param = beanFactory.getBeanByClass(beanClass);
             if (ObjectUtils.isNotNull(param)) {
-                beanInstance.getClass().getMethod(dependent.getMethodName(), param.getClass()).invoke(beanInstance, param);
+                reflectHandle(dependent.getInjectLevel(), dependent.getName(), beanInstance, param, dependent.getInjectType());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -122,7 +115,7 @@ public class BaseBeanConstructor implements BeanConstructor{
             // 从beanFactory获取依赖bean
             Object param = beanFactory.getBeanByName(dependent.getInjectInfo());
             if (ObjectUtils.isNotNull(param)) {
-                beanInstance.getClass().getMethod(dependent.getMethodName(), param.getClass()).invoke(beanInstance, param);
+                reflectHandle(dependent.getInjectLevel(), dependent.getName(), beanInstance, param, dependent.getInjectType());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -140,13 +133,66 @@ public class BaseBeanConstructor implements BeanConstructor{
             if (!dependent.getInjectType().equals(BeanDependentInjectTypeEnum.INJECT_TYPE_VALUE.getCode())) {
                 return;
             }
-            // TODO 当前仅仅支持字符串类型
             Object param = dependent.getInjectInfo();
             if (ObjectUtils.isNotNull(param)) {
-                beanInstance.getClass().getMethod(dependent.getMethodName(), param.getClass()).invoke(beanInstance, param);
+                reflectHandle(dependent.getInjectLevel(), dependent.getName(), beanInstance, param, dependent.getInjectType());
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * 反射调用方法或给字段赋值
+     *
+     * @param levelCode    {@link BeanDependentInjectLevelEnum#getCode()}
+     * @param name 字段名或方法名
+     * @param beanInstance bean实例
+     * @param param 赋值参数
+     * @param injectTypeCode {@link BeanDependentInjectTypeEnum#getCode()}
+     */
+    private void reflectHandle(Integer levelCode, String name, Object beanInstance, Object param,Integer injectTypeCode) throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        // 字段赋值
+        if (BeanDependentInjectLevelEnum.INJECT_LEVEL_FIELD.getCode().equals(levelCode)) {
+            Field field = beanInstance.getClass().getDeclaredField(name);
+            field.setAccessible(Boolean.TRUE);
+            field.set(beanInstance, param);
+            return;
+        }
+
+        // 方法赋值 非属性注入 非值注入
+        if (BeanDependentInjectLevelEnum.INJECT_LEVEL_METHOD.getCode().equals(levelCode)
+                && !BeanDependentInjectTypeEnum.INJECT_TYPE_PROPERTY.getCode().equals(injectTypeCode)
+                && !BeanDependentInjectTypeEnum.INJECT_TYPE_VALUE.getCode().equals(injectTypeCode)) {
+            beanInstance.getClass().getDeclaredMethod(name, param.getClass()).invoke(beanInstance, param);
+            return;
+        }
+
+        final HashSet<Class> BASE_TYPE = new HashSet<Class>(Arrays.asList(Integer.class, Float.class, Double.class, String.class, int.class, float.class, double.class));
+
+        // 方法赋值 属性注入 由于属性注入无法知道方法的参数类型故取该方法名的第一个单参数方法
+        if (BeanDependentInjectLevelEnum.INJECT_LEVEL_METHOD.getCode().equals(levelCode) && BeanDependentInjectTypeEnum.INJECT_TYPE_PROPERTY.getCode().equals(injectTypeCode)) {
+            Method[] methods = beanInstance.getClass().getMethods();
+            for (Method method : methods) {
+                if (name.equals(method.getName()) && method.getParameterCount() == Constants.ONE && BASE_TYPE.contains(method.getParameterTypes()[Constants.ZERO])) {
+                    param = ReflectionUtils.stringToBaseType((String) param, method.getParameterTypes()[Constants.ZERO]);
+                    method.invoke(beanInstance, param);
+                    break;
+                }
+            }
+            return;
+        }
+
+        // 方法赋值 值注入 由于值注入无法知道方法的参数类型故取该方法名的第一个单参数方法
+        if (BeanDependentInjectLevelEnum.INJECT_LEVEL_METHOD.getCode().equals(levelCode) && BeanDependentInjectTypeEnum.INJECT_TYPE_VALUE.getCode().equals(injectTypeCode)) {
+            Method[] methods = beanInstance.getClass().getMethods();
+            for (Method method : methods) {
+                if (name.equals(method.getName()) && method.getParameterCount() == Constants.ONE && BASE_TYPE.contains(method.getParameterTypes()[Constants.ZERO])) {
+                    param = ReflectionUtils.stringToBaseType((String) param, method.getParameterTypes()[Constants.ZERO]);
+                    method.invoke(beanInstance, param);
+                    break;
+                }
+            }
         }
     }
 }

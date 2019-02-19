@@ -3,6 +3,7 @@ package cn.zynworld.fan.core.bean;
 import cn.zynworld.fan.core.enums.BeanStatusEnum;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by zhaoyuening on 2019/2/17.
@@ -32,7 +33,12 @@ public class BeanDefinition {
     /**
      * bean 的class 包含父类
      */
-    private List<Class> beanClassList;
+    private Set<Class> beanSupperClassSet;
+
+    /**
+     * bean 的所有接口合集
+     */
+    private Set<Class> beanSupperInterfaceSet;
 
     /**
      * bean 的注解
@@ -96,12 +102,12 @@ public class BeanDefinition {
         return this;
     }
 
-    public List<Class> getBeanClassList() {
-        return beanClassList;
+    public Set<Class> getBeanSupperClassSet() {
+        return beanSupperClassSet;
     }
 
-    public BeanDefinition setBeanClassList(List<Class> beanClassList) {
-        this.beanClassList = beanClassList;
+    public BeanDefinition setBeanSupperClassSet(Set<Class> beanSupperClassSet) {
+        this.beanSupperClassSet = beanSupperClassSet;
         return this;
     }
 
@@ -120,6 +126,15 @@ public class BeanDefinition {
 
     public BeanDefinition setBeanDependents(List<BeanDependent> beanDependents) {
         this.beanDependents = beanDependents;
+        return this;
+    }
+
+    public Set<Class> getBeanSupperInterfaceSet() {
+        return beanSupperInterfaceSet;
+    }
+
+    public BeanDefinition setBeanSupperInterfaceSet(Set<Class> beanSupperInterfaceSet) {
+        this.beanSupperInterfaceSet = beanSupperInterfaceSet;
         return this;
     }
 }

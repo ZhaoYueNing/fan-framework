@@ -1,7 +1,9 @@
 package cn.zynworld.fan.common.utils;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by zhaoyuening on 2019/2/18.
@@ -12,28 +14,32 @@ public class ReflectionUtils {
     /**
      * 获取类的所有超类
      */
-    public static List<Class> getAllSuperClass(Class zlass) {
-        List<Class> classList = new ArrayList<>();
+    public static Set<Class> getAllSuperClass(Class zlass) {
+        Set<Class> classSet = new HashSet<>();
         while (ObjectUtils.isNotNull(zlass)) {
-            classList.add(zlass);
+            classSet.add(zlass);
             zlass = zlass.getSuperclass();
         }
-        return classList;
+        return classSet;
     }
 
     /**
      * 获取类的所有接口
      */
-    public static List<Class> addInterfaces(Class interfaces) {
-        List<Class> classList = new ArrayList<>();
-        if (interfaces == null) {
-            return classList;
+    public static Set<Class> getInterfaces(Class zlass) {
+        Set<Class> classSet = new HashSet<>();
+        if (zlass == null || classSet.contains(zlass)) {
+            return classSet;
         }
-        classList.add(interfaces);
-        for (Class zlass : interfaces.getInterfaces()) {
-            classList.addAll(addInterfaces(zlass));
+
+        if (zlass.isInterface()) {
+            classSet.add(zlass);
         }
-        return classList;
+
+        for (Class superClass : zlass.getInterfaces()) {
+            classSet.addAll(getInterfaces(superClass));
+        }
+        return classSet;
     }
 
     /**
@@ -58,7 +64,9 @@ public class ReflectionUtils {
     }
 
     public static <T> T stringToBaseType(String value, Class<T> zlass) {
-        if (zlass == String.class) {
+        if (ObjectUtils.isNull(value)) {
+            return null;
+        } else if (zlass == String.class) {
             return (T) value;
         } else if (zlass == int.class || zlass == Integer.class) {
             return (T) new Integer(value);

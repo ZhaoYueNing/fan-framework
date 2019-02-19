@@ -8,10 +8,7 @@ import cn.zynworld.fan.core.bean.BeanDefinition;
 import cn.zynworld.fan.core.config.ConfigReader;
 import cn.zynworld.fan.core.enums.BeanStatusEnum;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by zhaoyuening on 2019/2/17.
@@ -145,7 +142,7 @@ public abstract class BaseAbstractBeanFactory implements BeanFactory {
         // 如果是单例 存到容器
         if (definition.getSingleton()) {
             // class
-            definition.getBeanClassList().forEach(beanClass -> classBeanInstanceMap.put(beanClass.getName(), beanInstance));
+            definition.getBeanSupperClassSet().forEach(beanClass -> classBeanInstanceMap.put(beanClass.getName(), beanInstance));
             // beanName
             nameBeanInstanceMap.put(definition.getBeanName(), beanInstance);
         }
@@ -169,10 +166,10 @@ public abstract class BaseAbstractBeanFactory implements BeanFactory {
      */
     private void addDefinitions(BeanDefinition definition) {
         String beanName = definition.getBeanName();
-        List<Class> beanClassList = definition.getBeanClassList();
+        Set<Class> beanClassSet = definition.getBeanSupperClassSet();
 
         nameBeanDefinitionMap.put(beanName, definition);
-        beanClassList.forEach(beanClass -> addDefinitionToClassBeanDefinitionMap(definition, beanClass));
+        beanClassSet.forEach(beanClass -> addDefinitionToClassBeanDefinitionMap(definition, beanClass));
     }
 
     private void addDefinitionToClassBeanDefinitionMap(BeanDefinition definition,Class beanClass) {
