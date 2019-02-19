@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="653f04fe-2e5a-4745-8db2-3c7c19b99a2f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/annotations/Value.java" beforeDir="false" afterPath="$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/annotations/Value.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BaseBeanConstructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BaseBeanConstructor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BeanDefinitionParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BeanDefinitionParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fan-core/src/test/java/cn/zynworld/fan/core/entity/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/fan-core/src/test/java/cn/zynworld/fan/core/entity/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fan-core/src/test/resources/fanConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fan-core/src/test/resources/fanConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fan-core/target/classes/cn/zynworld/fan/core/annotations/Value.class" beforeDir="false" afterPath="$PROJECT_DIR$/fan-core/target/classes/cn/zynworld/fan/core/annotations/Value.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fan-core/target/classes/cn/zynworld/fan/core/bean/BaseBeanConstructor.class" beforeDir="false" afterPath="$PROJECT_DIR$/fan-core/target/classes/cn/zynworld/fan/core/bean/BaseBeanConstructor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fan-core/target/classes/cn/zynworld/fan/core/bean/BeanDefinitionParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/fan-core/target/classes/cn/zynworld/fan/core/bean/BeanDefinitionParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fan-core/target/test-classes/cn/zynworld/fan/core/entity/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/fan-core/target/test-classes/cn/zynworld/fan/core/entity/Employee.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fan-core/target/test-classes/fanConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fan-core/target/test-classes/fanConfig.xml" afterDir="false" />
-    </list>
+    <list default="true" id="653f04fe-2e5a-4745-8db2-3c7c19b99a2f" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/fan-core/target/" />
@@ -26,172 +14,129 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.565093">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="fanConfig.xml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/fan-core/src/test/resources/fanConfig.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BaseAbstractBeanFactory.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/factory/BaseAbstractBeanFactory.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="101">
-                  <caret line="132" column="31" lean-forward="true" selection-start-line="132" selection-start-column="31" selection-end-line="132" selection-end-column="31" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BaseBeanConstructor.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BaseBeanConstructor.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="344">
-                  <caret line="162" column="41" selection-start-line="162" selection-start-column="41" selection-end-line="162" selection-end-column="41" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#6451#6458#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/fan-common/src/main/java/cn/zynworld/fan/common/utils/Constants.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Resource.java" pinned="false" current-in-tab="false">
-            <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/src.zip!/javax/annotation/Resource.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="317">
-                  <caret line="112" column="45" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/README.md">
-              <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-                <state split_layout="SPLIT">
-                  <first_editor relative-caret-position="120">
-                    <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-                  </first_editor>
-                  <second_editor />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Value.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/annotations/Value.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="12" column="31" lean-forward="true" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ClassPathXmlConfigReader.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/config/ClassPathXmlConfigReader.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="49" column="5" lean-forward="true" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#1424#1425#0" expanded="true" />
-                    <element signature="e#1482#1483#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BeanDefinition.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BeanDefinition.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="125" lean-forward="true" selection-start-line="125" selection-end-line="125" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#1852#1853#0" expanded="true" />
-                    <element signature="e#1888#1889#0" expanded="true" />
-                    <element signature="e#2705#2706#0" expanded="true" />
-                    <element signature="e#2750#2751#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BeanDefinitionParser.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BeanDefinitionParser.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1208">
-                  <caret line="136" selection-start-line="136" selection-end-line="136" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="fanConfig.xml" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/fan-core/src/test/resources/fanConfig.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="60">
-                  <caret line="4" column="34" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="34" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Employee.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/fan-core/src/test/java/cn/zynworld/fan/core/entity/Employee.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#400#401#0" expanded="true" />
-                    <element signature="e#426#427#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BaseTester.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/fan-core/src/test/java/cn/zynworld/fan/core/BaseTester.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="378">
-                  <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="fanConfig.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fan-core/src/test/resources/fanConfig.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseAbstractBeanFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/factory/BaseAbstractBeanFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="101">
+              <caret line="132" column="31" lean-forward="true" selection-start-line="132" selection-start-column="31" selection-end-line="132" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseBeanConstructor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BaseBeanConstructor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-38">
+              <caret line="152" column="23" lean-forward="true" selection-start-line="152" selection-start-column="23" selection-end-line="152" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#6451#6458#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fan-common/src/main/java/cn/zynworld/fan/common/utils/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Resource.java" pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/src.zip!/javax/annotation/Resource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="317">
+              <caret line="112" column="45" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="120">
+                <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PropertyValue.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/annotations/PropertyValue.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClassPathXmlConfigReader.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/config/ClassPathXmlConfigReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1157">
+              <caret line="183" selection-start-line="183" selection-end-line="183" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1424#1425#0" expanded="true" />
+                <element signature="e#1482#1483#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BeanDefinition.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BeanDefinition.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="125" lean-forward="true" selection-start-line="125" selection-end-line="125" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1852#1853#0" expanded="true" />
+                <element signature="e#1888#1889#0" expanded="true" />
+                <element signature="e#2705#2706#0" expanded="true" />
+                <element signature="e#2750#2751#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BeanDefinitionParser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BeanDefinitionParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="362">
+              <caret line="100" column="53" lean-forward="true" selection-start-line="100" selection-start-column="53" selection-end-line="100" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -271,13 +216,13 @@
         <option value="$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/factory/BaseAbstractBeanFactory.java" />
         <option value="$PROJECT_DIR$/fan-common/src/main/java/cn/zynworld/fan/common/utils/Constants.java" />
         <option value="$PROJECT_DIR$/fan-common/src/main/java/cn/zynworld/fan/common/utils/ReflectionUtils.java" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BeanDefinitionParser.java" />
         <option value="$PROJECT_DIR$/fan-core/src/test/resources/fanConfig.xml" />
         <option value="$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/annotations/Value.java" />
         <option value="$PROJECT_DIR$/fan-core/src/test/java/cn/zynworld/fan/core/entity/Employee.java" />
+        <option value="$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BeanDefinitionParser.java" />
         <option value="$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/config/ClassPathXmlConfigReader.java" />
         <option value="$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BaseBeanConstructor.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -385,6 +330,24 @@
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fan-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fan-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="fan-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fan-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fan-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="fan-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -578,7 +541,7 @@
       <workItem from="1550488291955" duration="3042000" />
       <workItem from="1550493286658" duration="612000" />
       <workItem from="1550536646658" duration="7034000" />
-      <workItem from="1550543970091" duration="13616000" />
+      <workItem from="1550543970091" duration="13998000" />
     </task>
     <servers />
   </component>
@@ -615,10 +578,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54753000" />
+    <option name="totallyTimeSpent" value="55135000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="850" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5007153" side_tool="true" weight="0.4" />
@@ -628,7 +592,7 @@
       <window_info anchor="bottom" id="JRebel Executor" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info anchor="bottom" id="Statistic" order="7" weight="0.32941177" />
+      <window_info anchor="bottom" id="Statistic" order="7" weight="0.32847682" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -641,8 +605,8 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49928468" visible="true" weight="0.12715232" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.102288984" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49928468" visible="true" weight="0.12715232" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27539343" />
       <window_info id="JRebel" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49928468" weight="0.32980132" />
       <window_info anchor="right" id="Theme Preview" order="3" />
@@ -668,7 +632,7 @@
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5007153" side_tool="true" weight="0.4" />
-      <window_info anchor="bottom" id="Statistic" order="9" weight="0.32941177" />
+      <window_info anchor="bottom" id="Statistic" order="9" visible="true" weight="0.32847682" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" />
@@ -676,7 +640,7 @@
       <window_info anchor="bottom" id="JRebel Console" order="12" sideWeight="0.5007153" side_tool="true" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49928468" weight="0.32980132" />
       <window_info anchor="bottom" id="JRebel Executor" order="13" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.102288984" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2761087" />
       <window_info anchor="bottom" id="Messages" order="14" weight="0.32980132" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -685,7 +649,7 @@
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49928468" visible="true" weight="0.3960265" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49928468" weight="0.3960265" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1004,20 +968,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="120">
-            <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/src.zip!/javax/annotation/Resource.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="317">
           <caret line="112" column="45" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/annotations/PropertyValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BeanDefinitionParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="100" column="53" lean-forward="true" selection-start-line="100" selection-start-column="53" selection-end-line="100" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1036,12 +1010,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/annotations/Value.java">
+    <entry file="file://$PROJECT_DIR$/fan-core/src/test/java/cn/zynworld/fan/core/BaseTester.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="31" lean-forward="true" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        <state relative-caret-position="378">
+          <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="120">
+            <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BaseBeanConstructor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-38">
+          <caret line="152" column="23" lean-forward="true" selection-start-line="152" selection-start-column="23" selection-end-line="152" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6451#6458#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1056,52 +1051,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fan-core/src/test/java/cn/zynworld/fan/core/BaseTester.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fan-core/src/test/resources/fanConfig.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+        <state relative-caret-position="285">
+          <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/config/ClassPathXmlConfigReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="49" column="5" lean-forward="true" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
+        <state relative-caret-position="1157">
+          <caret line="183" selection-start-line="183" selection-end-line="183" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1424#1425#0" expanded="true" />
             <element signature="e#1482#1483#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BaseBeanConstructor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="162" column="41" selection-start-line="162" selection-start-column="41" selection-end-line="162" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6451#6458#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fan-core/src/main/java/cn/zynworld/fan/core/bean/BeanDefinitionParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1208">
-          <caret line="136" selection-start-line="136" selection-end-line="136" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

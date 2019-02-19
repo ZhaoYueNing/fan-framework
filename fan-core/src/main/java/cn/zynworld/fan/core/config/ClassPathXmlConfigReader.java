@@ -100,6 +100,7 @@ public class ClassPathXmlConfigReader implements ConfigReader {
 
     /**
      * 处理单个xml文档
+     * TODO task 改用xpath 精简解析逻辑
      */
     private List<BeanDefinition> handleDocument(Document document) throws FanParseXmlFailException, ClassNotFoundException {
         final String ROOT_ELEMENT_NAME = "fan";
